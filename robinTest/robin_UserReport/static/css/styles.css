@@ -1,0 +1,53 @@
+.mainRow
+{
+    height: 100%;
+    width: 100%;
+}
+
+.container-fluid
+{
+    height: 100%;
+    width: 100%;
+}
+
+html, body
+{
+    height: 100%;
+    width: 100%;
+}
+
+.userSideBarColumn
+{
+    background-color:black;
+    height: 100%;
+    width: 20%;
+}
+
+.userMainColumn
+{
+    width: 80%;
+}
+
+.btn
+{
+    -webkit-transition-duration: 0.4s; /*for hover function*/
+    transition-duration: 0.4s;         /*for hover function*/
+    font-size:100%;
+    background-color:skyblue;
+    color: white;
+    text-align: center;
+    border-width: 1px;
+    border-color: gray;
+    width: 100%;
+}
+
+.btn:hover
+{
+    background-color: lightblue; /* Green */
+    color: white;
+}
+
+.announcements
+{
+    background-color: black;
+}

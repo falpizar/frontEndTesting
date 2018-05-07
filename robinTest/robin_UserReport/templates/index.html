@@ -1,0 +1,51 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!-- The following contents will later be moved to a post-auth page -->
+<!-- Leaving as "index" for testing purposes -->
+<div class="container-fluid">
+    <div class="row mainRow">
+        <div class="col-sm-2 userSideBarColumn">
+            <div id="user_summary_sidebar">
+                {% for sideBarItem in sideBarItemsList %}
+                <div class="card">
+                    <div class="card-header" id="{{sideBarItem.id}}">
+                        <h5 class="mb-0">
+                        <button
+                            class="btn btn-link collapsed"
+                            data-toggle="collapse"
+                            data-target="#{{sideBarItem.idText}}"
+                            aria-expanded="false"
+                            aria-controls="{{sideBarItem.idText}}">
+                            {{sideBarItem.text}}
+                        </button>
+                        </h5>
+                    </div>
+                    <div id="{{sideBarItem.idText}}"
+                        class="collapse"
+                        aria-labelledby="{{sideBarItem.id}}"
+                        data-parent="#user_summary_sidebar">
+                        <div class="card-body">     
+                        {{sideBarItem.userData}}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-sm-10 userMainColumn">
+            <center><h1>{{mainPageTitle}}</h1></center>
+            <div class="row">
+                <div class="announcements"></div>
+            </div>
+            <div class="row">
+                {% for horizontalBarItem in horizontalBarItemsList %}
+                <div class="card col-sm-3">
+                    <a href="{{horizontalBarItem.href}}" class="btn btn-link">{{horizontalBarItem.name}}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
