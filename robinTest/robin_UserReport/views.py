@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from .models import SupportedBank, ApplicationUser, SideBarItem, SideBarItem_Spending, SideBarItem_Savings, SideBarItem_Retirement, SideBarItem_Investing, SideBarItem_PropertyAndDebt, HorizontalBarItem
+from .models import SupportedBank, ApplicationUser, HorizontalBarItem
+from .SideBarModels import SideBarItem, SideBarItem_Spending, SideBarItem_Savings, SideBarItem_Retirement, SideBarItem_Investing, SideBarItem_PropertyAndDebt
 
-
-def index(request):
+def userMain(request):
     # some information about the system:
     #number_of_banks = SupportedBank.objects.all().count()
     #number_of_registered_users = ApplicationUser.objects.all().count()
@@ -35,7 +35,7 @@ def index(request):
     ]
     return render(
         request,
-        'index.html',
+        'user_main_page.html',
         context={
             'sideBarItemsList':sideBarItemsList,
             'horizontalBarItemsList':horizontalBarItemsList,
