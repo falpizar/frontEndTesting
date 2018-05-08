@@ -1,4 +1,6 @@
 from django.db import models
+from .DataModels import Request_Spending
+from .Helpers import getClassColorForValue
 
 #### side bar objects ####
 #### Main interface implemented by all different
@@ -18,10 +20,28 @@ class SideBarItem(models.Model):
         return "sideBarItem"
 
 class SideBarItem_Spending(SideBarItem):
+    userData = Request_Spending()
     def getUserData(self):
-        return "Mock spending data 123"
+        
+        availableCash = self.userData.getAvailableCash()
+        accBalance = self.userData.getAllAccountsTotalBalance()
+        creditCardsBalance = self.userData.getCreditCardTotalBalance()
+
+        exchangeSymbol = self.userData.getExchangeSymbol()
+        # todo: might try this with js?
+        # in the end, its py or js code, just should not be here
+        cashColor = getClassColorForValue(availableCash, 0, self.userData.getPositiveCashTrendThreshold())
+        accsColor = getClassColorForValue(accBalance, 0, 0) # good or bad
+        creditColor = getClassColorForValue(creditCardsBalance, 0, self.userData.getCreditLimit()) # may have capacity for credit
+
+        resultMessage =  "Cash: <a class=\"" + cashColor + "\">"  + exchangeSymbol + str(availableCash) + "</a>\n"
+        resultMessage += "Acc: <a class=\"" + accsColor + "\">"  + exchangeSymbol + str(accBalance) + "</a>\n"
+        resultMessage += "Credit Cards: <a class=\"" + creditColor + "\">"  + exchangeSymbol + str(creditCardsBalance) + "</a>\n"
+
+        return resultMessage 
     def getText(self):
         return "Spending"
+    
 
 class SideBarItem_Savings(SideBarItem):
     def getUserData(self):

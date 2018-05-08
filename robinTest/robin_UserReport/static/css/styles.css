@@ -51,3 +51,18 @@ html, body
 {
     background-color: black;
 }
+/* add color to values of interest */
+.redText
+{
+    color:red
+}
+
+.greenText
+{
+    color:green
+}
+
+.blackText
+{
+    color:black
+}
