@@ -16,7 +16,3 @@ class SupportedBank(models.Model):
          return reverse('model-detail-view', args=[str(self.id)])
     def __str__(self):
         return "Supported Bank"
-
-class HorizontalBarItem(models.Model):
-    href = models.CharField(max_length=15, primary_key=True, help_text="")
-    name = models.CharField(max_length=15, primary_key=False, help_text="")

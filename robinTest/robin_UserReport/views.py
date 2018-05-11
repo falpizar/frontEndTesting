@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import SupportedBank, ApplicationUser, HorizontalBarItem
+from .models import SupportedBank, ApplicationUser
 from .SideBarModels import SideBarItem, SideBarItem_Spending, SideBarItem_Savings, SideBarItem_Retirement, SideBarItem_Investing, SideBarItem_PropertyAndDebt
+from .HorizontalBarModels import HorizontalBarItem, HorizontalBarItem_Budget, HorizontalBarItem_Goals, HorizontalBarItem_Tools, HorizontalBarItem_UserProfile
 
 def userMain(request):
     # some information about the system:
@@ -28,10 +29,10 @@ def userMain(request):
             idText="propertyDebtsSideBarItemTextMock"),
             ]
     horizontalBarItemsList = [
-        HorizontalBarItem(name="Profile",   href=""),
-        HorizontalBarItem(name="Goals",     href=""),
-        HorizontalBarItem(name="Budget",    href=""),
-        HorizontalBarItem(name="Tools",     href=""),
+        HorizontalBarItem_UserProfile(),
+        HorizontalBarItem_Goals(),
+        HorizontalBarItem_Budget(),
+        HorizontalBarItem_Tools(),
     ]
     return render(
         request,
