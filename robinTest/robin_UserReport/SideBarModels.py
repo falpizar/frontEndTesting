@@ -8,8 +8,12 @@ from .Helpers import getClassColorForValue
 class SideBarItem(models.Model):
     # Standalone object
     # displayed in the user's main page
-    id = models.CharField(max_length=15, primary_key=True, help_text="")
-    idText = models.CharField(max_length=15, primary_key=False, help_text="")
+    def id(self):
+        return ""
+    def idText(self):
+        return ""
+    def getAjaxUrl(self):
+        return "invalidUrl"
     def getUserData(self):
         raise Exception('Invalid class. Use of base class not allowed.')
     def getText(self):
@@ -20,19 +24,25 @@ class SideBarItem(models.Model):
         return "sideBarItem"
 
 class SideBarItem_Spending(SideBarItem):
-    userData = Request_Spending()
+    def id(self):
+        return "spendingSideBarItemMock"
+    def idText(self):
+        return "spendingSideBarItemTextMock"
+    def getAjaxUrl(self):
+        return "spendingAjaxSidebar"
     def getUserData(self):
-        
-        availableCash = self.userData.getAvailableCash()
-        accBalance = self.userData.getAllAccountsTotalBalance()
-        creditCardsBalance = self.userData.getCreditCardTotalBalance()
+        userData = Request_Spending()
 
-        exchangeSymbol = self.userData.getExchangeSymbol()
+        availableCash = userData.getAvailableCash()
+        accBalance = userData.getAllAccountsTotalBalance()
+        creditCardsBalance = userData.getCreditCardTotalBalance()
+
+        exchangeSymbol = userData.getExchangeSymbol()
         # todo: might try this with js?
         # in the end, its py or js code, just should not be here
-        cashColor = getClassColorForValue(availableCash, 0, self.userData.getPositiveCashTrendThreshold())
+        cashColor = getClassColorForValue(availableCash, 0, userData.getPositiveCashTrendThreshold())
         accsColor = getClassColorForValue(accBalance, 0, 0) # good or bad
-        creditColor = getClassColorForValue(creditCardsBalance, 0, self.userData.getCreditLimit()) # may have capacity for credit
+        creditColor = getClassColorForValue(creditCardsBalance, 0, userData.getCreditLimit()) # may have capacity for credit
 
         resultMessage =  "Cash: <a class=\"" + cashColor + "\">"  + exchangeSymbol + str(availableCash) + "</a>\n"
         resultMessage += "Acc: <a class=\"" + accsColor + "\">"  + exchangeSymbol + str(accBalance) + "</a>\n"
@@ -44,24 +54,48 @@ class SideBarItem_Spending(SideBarItem):
     
 
 class SideBarItem_Savings(SideBarItem):
+    def id(self):
+        return "savingsSideBarItemMock"
+    def idText(self):
+        return "savingsSideBarItemTextMock"
+    def getAjaxUrl(self):
+        return "savingsAjaxSidebar"
     def getUserData(self):
         return "Mock savings data 456"
     def getText(self):
         return "Savings"
 
 class SideBarItem_Retirement(SideBarItem):
+    def id(self):
+        return "retirementSideBarItemMock"
+    def idText(self):
+        return "retirementSideBarItemTextMock"
+    def getAjaxUrl(self):
+        return "retirementAjaxSidebar"
     def getUserData(self):
         return "Mock retirement data 234 along with other stuff"
     def getText(self):
         return "Retirement"
 
 class SideBarItem_Investing(SideBarItem):
+    def id(self):
+        return "investingSideBarItemMock"
+    def idText(self):
+        return "investingSideBarItemTextMock"
+    def getAjaxUrl(self):
+        return "investingAjaxSidebar"
     def getUserData(self):
         return "Mock investing data 0987. Less stuff here."
     def getText(self):
         return "Investing"
 
 class SideBarItem_PropertyAndDebt(SideBarItem):
+    def id(self):
+        return "propertyDebtsSideBarItemMock"
+    def idText(self):
+        return "propertyDebtsSideBarItemTextMock"
+    def getAjaxUrl(self):
+        return "propertyAjaxSidebar"
     def getUserData(self):
         return "Mock property data. No number displayed."
     def getText(self):

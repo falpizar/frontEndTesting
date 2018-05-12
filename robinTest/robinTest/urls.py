@@ -23,7 +23,7 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path('main/',include('robin_UserReport.urls'))
+    path('main/', include('robin_UserReport.urls')),
 ]
 
 urlpatterns += [

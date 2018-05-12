@@ -2,6 +2,10 @@
 # to implement most of these functionalities
 # as it has full access to data and its structure.
 # This class may be entirely replaced by backend calls.
+
+# for now, let's generate some random numbers!!
+import random
+
 class Request_Spending():
     # Stores user's data
     # with the required calculations
@@ -14,11 +18,11 @@ class Request_Spending():
     # will eventually replace with data
     # coming from service requests.
     def getAvailableCash(self):
-        return 50
+        return random.randint(0, 200)
     def getAllAccountsTotalBalance(self):
-        return 100
+        return random.randint(-40, 300)
     def getCreditCardTotalBalance(self):
-        return -50
+        return random.randint(-300, 0)
     def getPositiveCashTrendThreshold(self):
         # should calculate based on historical data
         # the value where we want to let the user

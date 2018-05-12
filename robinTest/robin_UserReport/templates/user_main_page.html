@@ -3,6 +3,7 @@
 {% block content %}
 <!-- The following contents will later be moved to a post-auth page -->
 <!-- Leaving as "index" for testing purposes -->
+
 <div class="container-fluid">
     <div class="row mainRow">
         <div class="col-sm-2 userSideBarColumn">
@@ -21,11 +22,31 @@
                         </button>
                         </h5>
                     </div>
+
+                    {% block javascript %}
+                    <script>
+                        window.setInterval(function() {
+                            $.ajax(
+                                {
+                                    url: "{{sideBarItem.getAjaxUrl}}",
+                                    data: {},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        document.getElementById("{{sideBarItem.idText}}_text").innerHTML = data.userData.replace(/\n/g, '<br>');
+                                        //document.getElementById("{{sideBarItem.idText}}_text").innerHTML = data.userData;
+                                        //document.getElementById("{{sideBarItem.idText}}_text").innerHTML = "hello ajax..";
+                                    }
+                                }
+                            );
+                        }, 5000);
+                    </script>
+                    {% endblock %}
+
                     <div id="{{sideBarItem.idText}}"
                         class="collapse"
                         aria-labelledby="{{sideBarItem.id}}"
                         data-parent="#user_summary_sidebar">
-                        <div class="card-body">
+                        <div class="card-body" id="{{sideBarItem.idText}}_text">
                         {% autoescape off %}
                         {{sideBarItem.getUserData|linebreaks}}
                         {% endautoescape %}

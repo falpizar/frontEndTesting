@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import SupportedBank, ApplicationUser
 from .SideBarModels import SideBarItem, SideBarItem_Spending, SideBarItem_Savings, SideBarItem_Retirement, SideBarItem_Investing, SideBarItem_PropertyAndDebt
 from .HorizontalBarModels import HorizontalBarItem, HorizontalBarItem_Budget, HorizontalBarItem_Goals, HorizontalBarItem_Tools, HorizontalBarItem_UserProfile
+from django.http import JsonResponse
 
 def userMain(request):
     # some information about the system:
@@ -12,22 +13,12 @@ def userMain(request):
     
     mainPageTitle = "My Financials"
     sideBarItemsList = [
-        SideBarItem_Spending(
-            id="spendingSideBarItemMock",
-            idText="spendingSideBarItemTextMock"),
-        SideBarItem_Savings(
-            id="savingsSideBarItemMock",
-            idText="savingsSideBarItemTextMock"),
-        SideBarItem_Retirement(
-            id="retirementSideBarItemMock",
-            idText="retirementSideBarItemTextMock"),
-        SideBarItem_Investing(
-            id="investingSideBarItemMock",
-            idText="investingSideBarItemTextMock"),
-        SideBarItem_PropertyAndDebt(
-            id="propertyDebtsSideBarItemMock",
-            idText="propertyDebtsSideBarItemTextMock"),
-            ]
+        SideBarItem_Spending(),
+        SideBarItem_Savings(),
+        SideBarItem_Retirement(),
+        SideBarItem_Investing(),
+        SideBarItem_PropertyAndDebt(),
+    ]
     horizontalBarItemsList = [
         HorizontalBarItem_UserProfile(),
         HorizontalBarItem_Goals(),
@@ -42,3 +33,9 @@ def userMain(request):
             'horizontalBarItemsList':horizontalBarItemsList,
             'mainPageTitle':mainPageTitle,},
     )
+
+def spendingAjaxSidebar(request):
+    data = {
+        'userData': SideBarItem_Spending().getUserData(),
+    }
+    return JsonResponse(data)
