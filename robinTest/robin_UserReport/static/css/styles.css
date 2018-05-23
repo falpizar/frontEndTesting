@@ -23,21 +23,46 @@ html, body
     width: 20%;
 }
 
+#userSideBarId.active {
+    margin-left: -20%;
+}
+
 .userMainColumn
 {
     width: 80%;
 }
 
+.userMainColumnExpanded
+{
+    width: 100%;
+}
+
+.entireUserSection
+{
+    align-items: stretch;
+    display: flex;
+}
+
 .btn
 {
-    -webkit-transition-duration: 0.4s; /*for hover function*/
-    transition-duration: 0.4s;         /*for hover function*/
-    font-size:100%;
+    -webkit-transition-duration: 0.3s; /*for hover function*/
+    transition-duration: 0.3s;         /*for hover function*/
     background-color:skyblue;
     color: white;
-    text-align: center;
     border-width: 1px;
     border-color: gray;
+}
+
+#sidebarCollapseWrapper
+{
+    padding-right: 0%;
+    marging-right: 0%;
+}
+
+.sideBarButton
+{
+    font-size:100%;
+    text-align: center;
     width: 100%;
 }
 

@@ -4,16 +4,16 @@
 <!-- The following contents will later be moved to a post-auth page -->
 <!-- Leaving as "index" for testing purposes -->
 
-<div class="container-fluid">
+<div class="container-fluid entireUserSection">
     <div class="row mainRow">
-        <div class="col-sm-2 userSideBarColumn">
+        <div class="col-sm-2 userSideBarColumn" id="userSideBarId">
             <div id="user_summary_sidebar">
                 {% for sideBarItem in sideBarItemsList %}
                 <div class="card">
                     <div class="card-header" id="{{sideBarItem.id}}">
                         <h5 class="mb-0">
                         <button
-                            class="btn btn-link collapsed"
+                            class="btn btn-link collapsed sideBarButton"
                             data-toggle="collapse"
                             data-target="#{{sideBarItem.idText}}"
                             aria-expanded="false"
@@ -56,20 +56,34 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="col-sm-10 userMainColumn">
-            <!--center><h1>{{mainPageTitle}}</h1></center-->
+        <div class="col-sm-10 userMainColumn" id="userMainColumnId">
             <div class="row">
-                <ul class="nav nav-tabs nav-justified">
-                    {% for horizontalBarItem in horizontalBarItemsList %}
-                    <li class="{{horizontalBarItem.getSelectedByDefault}}">
-                        <a data-toggle="tab" href="#{{horizontalBarItem.getHref}}">{{horizontalBarItem.getName}}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
+                <div class="col-sm-1" id="sidebarCollapseWrapper">
+                    <button id="sidebarCollapse" class="btn btn-info navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                    <script>
+                        $(document).ready(function () {
+                            $('#sidebarCollapse').on('click', function () {
+                                $('#userSideBarId').toggleClass('active');
+                                $('#userMainColumnId').toggleClass('userMainColumnExpanded');
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="col-sm-11">
+                    <ul class="nav nav-tabs nav-justified">
+                        {% for horizontalBarItem in horizontalBarItemsList %}
+                        <li class="{{horizontalBarItem.getSelectedByDefault}}">
+                            <a data-toggle="tab" href="#{{horizontalBarItem.getHref}}">{{horizontalBarItem.getName}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
             <div class="tab-content">
                 {% for horizontalBarItem in horizontalBarItemsList %}
-                <div id="{{horizontalBarItem.getHref}}" class="tab-pane fade {{horizontalBarItem.getSelectedByDefault}}">
+                <div id="{{horizontalBarItem.getHref}}" class="tab-pane fade">
                     <p>{{horizontalBarItem.getText}}</p>
                 </div>
                 {% endfor %}                
