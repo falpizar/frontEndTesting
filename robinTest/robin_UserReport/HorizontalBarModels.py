@@ -7,6 +7,8 @@ class HorizontalBarItem(models.Model):
         return ""
     def getSelectedByDefault(self):
         return "" # only one of the options will be selected by default
+    def getTextSelectedByDefault(self):
+        return "" # only one displayed by default
     def getText(self):
         return ""
 
@@ -32,7 +34,10 @@ class HorizontalBarItem_Budget(HorizontalBarItem):
     def getName(self):
         return "Budget"
     def getText(self):
-        return "Budget details:"
+        userBudgetDetails = "Budget details:"
+        return userBudgetDetails
+    def getTextSelectedByDefault(self):
+        return "in " + self.getSelectedByDefault()
     def getSelectedByDefault(self):
         return "active"
 

@@ -33,8 +33,6 @@
                                     dataType: 'json',
                                     success: function (data) {
                                         document.getElementById("{{sideBarItem.idText}}_text").innerHTML = data.userData.replace(/\n/g, '<br>');
-                                        //document.getElementById("{{sideBarItem.idText}}_text").innerHTML = data.userData;
-                                        //document.getElementById("{{sideBarItem.idText}}_text").innerHTML = "hello ajax..";
                                     }
                                 }
                             );
@@ -83,7 +81,7 @@
             </div>
             <div class="tab-content">
                 {% for horizontalBarItem in horizontalBarItemsList %}
-                <div id="{{horizontalBarItem.getHref}}" class="tab-pane fade">
+                <div id="{{horizontalBarItem.getHref}}" class="tab-pane fade {{horizontalBarItem.getTextSelectedByDefault}}">
                     <p>{{horizontalBarItem.getText}}</p>
                 </div>
                 {% endfor %}                
