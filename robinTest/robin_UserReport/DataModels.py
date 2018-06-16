@@ -36,3 +36,32 @@ class Request_Spending():
     def getCreditLimit(self):
         # the user has some capacity for credit, based on overall balance
         return 20
+
+class SpendingDataRow():
+    categoryName = ""
+    categoryAssigned = 0.0
+    categoryBudgetActual = 0.0
+    categoryAvailable = 0.0
+class SpendingDataColumn():
+    name = ""
+    size = "0"
+class Request_BudgetRegularSpending():
+    def getCategories(self):
+        spendingCategory = SpendingDataColumn()
+        spendingCategory.name="Spending category"
+        spendingCategory.size="6"
+
+        budgetCategory = SpendingDataColumn()
+        budgetCategory.name="Budget"
+        budgetCategory.size="2"
+
+        actualCategory = SpendingDataColumn()
+        actualCategory.name="Actual"
+        actualCategory.size="2"
+
+        availableCategory = SpendingDataColumn()
+        availableCategory.name="Available"
+        availableCategory.size="2"
+        
+        return [spendingCategory,budgetCategory,actualCategory,availableCategory]
+    
