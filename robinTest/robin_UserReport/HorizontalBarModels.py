@@ -53,14 +53,7 @@ class HorizontalBarItem_Budget(HorizontalBarItem):
     def getName(self):
         return "Budget"
     def getText(self):
-        userBudgetDetails = self.getMonthSelector()
-        userBudgetDetails += "<h2>Regular Spending</h2>"
-        userBudgetDetails += self.getRegularSpendingData()
-        userBudgetDetails += "<h2>Ocasional Spending</h2>"
-        userBudgetDetails += self.getOcasionalSpendingData()
-        userBudgetDetails += "<h2>Savings for future</h2>"
-        userBudgetDetails += self.getSavingsData()
-        return userBudgetDetails
+        return self.getMonthSelector() + self.getRegularSpendingData() + self.getOcasionalSpendingData() + self.getSavingsData()
     def getMonthSelector(self):
         monthName = self.getMonthName()
         return monthName
@@ -74,36 +67,25 @@ class HorizontalBarItem_Budget(HorizontalBarItem):
     def getOcasionalSpendingDataId(self):
         return "userBudgetOcasionalSpendingTable"
     def getOcasionalSpendingData(self):
-         return self.getBudgetBaseTableHeader(self.getOcasionalSpendingDataId()) + """
-            <tr>
-                <th>123</th>
-                <th>456</th>
-                <th>789</th>
-            </tr>
-        </table>
-        """
+        return "<h2>Ocasional Spending</h2>" + self.getDataTable(self.getOcasionalSpendingDataId(),1)
     def getRegularSpendingDataId(self):
         return "userBudgetRegularSpendingTable"
     def getRegularSpendingData(self):
-         return self.getBudgetBaseTableHeader(self.getRegularSpendingDataId()) + """
-            <tr>
-                <th>123</th>
-                <th>456</th>
-                <th>789</th>
-            </tr>
-        </table>
-        """
+        return "<h2>Regular Spending</h2>" + self.getDataTable(self.getRegularSpendingDataId(),2)
     def getSavingsDataId(self):
         return "userBudgetSavingsTable"
     def getSavingsData(self):
-         return self.getBudgetBaseTableHeader(self.getSavingsDataId()) + """
-            <tr>
-                <th>123</th>
-                <th>456</th>
-                <th>789</th>
-            </tr>
-        </table>
-        """
+        return "<h2>Savings for future</h2>" + self.getDataTable(self.getSavingsDataId(),3)
+
+    def getDataTable(self, tableId, tableDataId):
+        tableData = self.getBudgetBaseTableHeader(tableId)
+        for eachRow in Request_BudgetRegularSpending().getRows(tableDataId):
+            tableData += "<tr>"
+            for eachIndex in eachRow.getAllData():
+                tableData += "<th>{}</th>".format(eachIndex)
+            tableData += "</tr>"
+        tableData += "</table>"
+        return tableData
     def getBudgetBaseTableHeader(self, tableId):
         tableHeader = """
         <table id=\"""" + tableId + """\" class=\"table table-bordered table-responsive-md table-striped text-center\">

@@ -38,10 +38,12 @@ class Request_Spending():
         return 20
 
 class SpendingDataRow():
-    categoryName = ""
-    categoryAssigned = 0.0
-    categoryBudgetActual = 0.0
-    categoryAvailable = 0.0
+    name = ""
+    assigned = 0.0
+    budgetActual = 0.0
+    available = 0.0
+    def getAllData(self):
+        return [self.name,'{}'.format(self.assigned), '{}'.format(self.budgetActual), '{}'.format(self.available)]
 class SpendingDataColumn():
     name = ""
     size = "0"
@@ -62,6 +64,18 @@ class Request_BudgetRegularSpending():
         availableCategory = SpendingDataColumn()
         availableCategory.name="Available"
         availableCategory.size="2"
-        
+
         return [spendingCategory,budgetCategory,actualCategory,availableCategory]
-    
+    def getRows(self, tableId):
+        # tableId represents the section in the budget being queried
+        # i.e. it will have a value to represent ocasional\regular spending, savings for the future
+        # or any other table that might be added in the future
+        outputRows = []
+        for x in range(0,2+tableId,1):
+            someRandomData = SpendingDataRow()
+            someRandomData.name = "InputCategory{}".format(x)
+            someRandomData.assigned = x*1.4
+            someRandomData.budgetActual = x*1.1
+            someRandomData.available = x*2
+            outputRows.append(someRandomData)
+        return outputRows
