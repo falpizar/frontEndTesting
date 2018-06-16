@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  
+  <title>My Financials</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.5">
+  <link rel="stylesheet" href="My%20Financials_files/bootstrap.css">
+  <script src="My%20Financials_files/jquery.js"></script>
+  <script src="My%20Financials_files/bootstrap.js"></script>
+
+  <!-- Add additional CSS in static file -->
+  
+  <link rel="stylesheet" href="My%20Financials_files/styles.css">
+</head>
+
+<body>
+  
+<!-- The following contents will later be moved to a post-auth page -->
+<!-- Leaving as "index" for testing purposes -->
+
+<div class="container-fluid entireUserSection">
+    <div class="row mainRow">
+        <div class="col-sm-2 userSideBarColumn" id="userSideBarId">
+            <div id="user_summary_sidebar">
+                
+                <div class="card">
+                    <div class="card-header" id="None">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed sideBarButton" data-toggle="collapse" data-target="#spendingSideBarItemTextMock" aria-expanded="false" aria-controls="spendingSideBarItemTextMock">
+                            Spending
+                        </button>
+                        </h5>
+                    </div>
+
+                    
+                    <script>
+                        window.setInterval(function() {
+                            $.ajax(
+                                {
+                                    url: "spendingAjaxSidebar",
+                                    data: {},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        document.getElementById("spendingSideBarItemTextMock_text").innerHTML = data.userData.replace(/\n/g, '<br>');
+                                    }
+                                }
+                            );
+                        }, 10000);
+                    </script>
+                    
+
+                    <div id="spendingSideBarItemTextMock" class="collapse" aria-labelledby="None" data-parent="#user_summary_sidebar">
+                        <div class="card-body" id="spendingSideBarItemTextMock_text">Cash: <a class="greenText">$185</a><br>Acc: <a class="greenText">$281</a><br>Credit Cards: <a class="redText">$-192</a><br></div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header" id="None">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed sideBarButton" data-toggle="collapse" data-target="#savingsSideBarItemTextMock" aria-expanded="false" aria-controls="savingsSideBarItemTextMock">
+                            Savings
+                        </button>
+                        </h5>
+                    </div>
+
+                    
+                    <script>
+                        window.setInterval(function() {
+                            $.ajax(
+                                {
+                                    url: "savingsAjaxSidebar",
+                                    data: {},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        document.getElementById("savingsSideBarItemTextMock_text").innerHTML = data.userData.replace(/\n/g, '<br>');
+                                    }
+                                }
+                            );
+                        }, 10000);
+                    </script>
+                    
+
+                    <div id="savingsSideBarItemTextMock" class="collapse" aria-labelledby="None" data-parent="#user_summary_sidebar">
+                        <div class="card-body" id="savingsSideBarItemTextMock_text">
+                        
+                        <p>Mock savings data 456</p>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header" id="None">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed sideBarButton" data-toggle="collapse" data-target="#retirementSideBarItemTextMock" aria-expanded="false" aria-controls="retirementSideBarItemTextMock">
+                            Retirement
+                        </button>
+                        </h5>
+                    </div>
+
+                    
+                    <script>
+                        window.setInterval(function() {
+                            $.ajax(
+                                {
+                                    url: "retirementAjaxSidebar",
+                                    data: {},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        document.getElementById("retirementSideBarItemTextMock_text").innerHTML = data.userData.replace(/\n/g, '<br>');
+                                    }
+                                }
+                            );
+                        }, 10000);
+                    </script>
+                    
+
+                    <div id="retirementSideBarItemTextMock" class="collapse" aria-labelledby="None" data-parent="#user_summary_sidebar">
+                        <div class="card-body" id="retirementSideBarItemTextMock_text">
+                        
+                        <p>Mock retirement data 234 along with other stuff</p>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header" id="None">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed sideBarButton" data-toggle="collapse" data-target="#investingSideBarItemTextMock" aria-expanded="false" aria-controls="investingSideBarItemTextMock">
+                            Investing
+                        </button>
+                        </h5>
+                    </div>
+
+                    
+                    <script>
+                        window.setInterval(function() {
+                            $.ajax(
+                                {
+                                    url: "investingAjaxSidebar",
+                                    data: {},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        document.getElementById("investingSideBarItemTextMock_text").innerHTML = data.userData.replace(/\n/g, '<br>');
+                                    }
+                                }
+                            );
+                        }, 10000);
+                    </script>
+                    
+
+                    <div id="investingSideBarItemTextMock" class="collapse" aria-labelledby="None" data-parent="#user_summary_sidebar">
+                        <div class="card-body" id="investingSideBarItemTextMock_text">
+                        
+                        <p>Mock investing data 0987. Less stuff here.</p>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header" id="None">
+                        <h5 class="mb-0">
+                        <button class="btn btn-link collapsed sideBarButton" data-toggle="collapse" data-target="#propertyDebtsSideBarItemTextMock" aria-expanded="false" aria-controls="propertyDebtsSideBarItemTextMock">
+                            Property &amp; Debt
+                        </button>
+                        </h5>
+                    </div>
+
+                    
+                    <script>
+                        window.setInterval(function() {
+                            $.ajax(
+                                {
+                                    url: "propertyAjaxSidebar",
+                                    data: {},
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        document.getElementById("propertyDebtsSideBarItemTextMock_text").innerHTML = data.userData.replace(/\n/g, '<br>');
+                                    }
+                                }
+                            );
+                        }, 10000);
+                    </script>
+                    
+
+                    <div id="propertyDebtsSideBarItemTextMock" class="collapse" aria-labelledby="None" data-parent="#user_summary_sidebar">
+                        <div class="card-body" id="propertyDebtsSideBarItemTextMock_text">
+                        
+                        <p>Mock property data. No number displayed.</p>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-sm-10 userMainColumn" id="userMainColumnId">
+            <div class="row">
+                <div class="col-sm-1" id="sidebarCollapseWrapper">
+                    <button id="sidebarCollapse" class="btn btn-info navbar-btn">
+                        <i class="glyphicon glyphicon-align-left"></i>
+                    </button>
+                    <script>
+                        $(document).ready(function () {
+                            $('#sidebarCollapse').on('click', function () {
+                                $('#userSideBarId').toggleClass('active');
+                                $('#userMainColumnId').toggleClass('userMainColumnExpanded');
+                            });
+                        });
+                    </script>
+                </div>
+                <div class="col-sm-11">
+                    <ul class="nav nav-tabs nav-justified">
+                        
+                        <li class="">
+                            <a data-toggle="tab" href="#userProfile">Profile</a>
+                        </li>
+                        
+                        <li class="">
+                            <a data-toggle="tab" href="#userGoals">Goals</a>
+                        </li>
+                        
+                        <li class="active">
+                            <a data-toggle="tab" href="#userBudget">Budget</a>
+                        </li>
+                        
+                        <li class="">
+                            <a data-toggle="tab" href="#userTools">Tools</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content">
+                
+                <div id="userProfile" class="tab-pane fade ">
+                    
+                    <p>To display user profile. Section details TBD.</p>
+                    
+                </div>
+                
+                <div id="userGoals" class="tab-pane fade ">
+                    
+                    <p>To display user defined goals. Section details TBD.</p>
+                    
+                </div>
+                
+                <div id="userBudget" class="tab-pane fade in active">
+                    
+                    <p>June</p><h2>Regular Spending</h2>
+        <table id="userBudgetRegularSpendingTable" class="table table-bordered table-responsive-md table-striped text-center">
+        <tbody><tr>
+            <th class="text-center col-sm-6">Spending category</th>
+            
+            <th class="text-center col-sm-2">Budget</th>
+            
+            <th class="text-center col-sm-2">Actual</th>
+            
+            <th class="text-center col-sm-2">Available</th>
+            </tr><tr><th>InputCategory0</th><th>0.0</th><th>0.0</th><th>0</th></tr><tr><th>InputCategory1</th><th>1.4</th><th>1.1</th><th>2</th></tr><tr><th>InputCategory2</th><th>2.8</th><th>2.2</th><th>4</th></tr><tr><th>InputCategory3</th><th>4.199999999999999</th><th>3.3000000000000003</th><th>6</th></tr></tbody></table><h2>Ocasional Spending</h2>
+        <table id="userBudgetOcasionalSpendingTable" class="table table-bordered table-responsive-md table-striped text-center">
+        <tbody><tr>
+            <th class="text-center col-sm-6">Spending category</th>
+            
+            <th class="text-center col-sm-2">Budget</th>
+            
+            <th class="text-center col-sm-2">Actual</th>
+            
+            <th class="text-center col-sm-2">Available</th>
+            </tr><tr><th>InputCategory0</th><th>0.0</th><th>0.0</th><th>0</th></tr><tr><th>InputCategory1</th><th>1.4</th><th>1.1</th><th>2</th></tr><tr><th>InputCategory2</th><th>2.8</th><th>2.2</th><th>4</th></tr></tbody></table><h2>Savings for future</h2>
+        <table id="userBudgetSavingsTable" class="table table-bordered table-responsive-md table-striped text-center">
+        <tbody><tr>
+            <th class="text-center col-sm-6">Spending category</th>
+            
+            <th class="text-center col-sm-2">Budget</th>
+            
+            <th class="text-center col-sm-2">Actual</th>
+            
+            <th class="text-center col-sm-2">Available</th>
+            </tr><tr><th>InputCategory0</th><th>0.0</th><th>0.0</th><th>0</th></tr><tr><th>InputCategory1</th><th>1.4</th><th>1.1</th><th>2</th></tr><tr><th>InputCategory2</th><th>2.8</th><th>2.2</th><th>4</th></tr><tr><th>InputCategory3</th><th>4.199999999999999</th><th>3.3000000000000003</th><th>6</th></tr><tr><th>InputCategory4</th><th>5.6</th><th>4.4</th><th>8</th></tr></tbody></table><p></p>
+                    
+                </div>
+                
+                <div id="userTools" class="tab-pane fade ">
+                    
+                    <p>To display various tools. Section details TBD.</p>
+                    
+                </div>
+                                
+            </div>
+        </div>
+    </div>
+</div>
+    
+
+</body></html>

@@ -1,0 +1,93 @@
+.mainRow
+{
+    height: 100%;
+    width: 100%;
+}
+
+.container-fluid
+{
+    height: 100%;
+    width: 100%;
+}
+
+html, body
+{
+    height: 100%;
+    width: 100%;
+}
+
+.userSideBarColumn
+{
+    background-color:ghostwhite;
+    height: 100%;
+    width: 20%;
+}
+
+#userSideBarId.active {
+    margin-left: -20%;
+}
+
+.userMainColumn
+{
+    width: 80%;
+}
+
+.userMainColumnExpanded
+{
+    width: 100%;
+}
+
+.entireUserSection
+{
+    align-items: stretch;
+    display: flex;
+}
+
+.btn
+{
+    -webkit-transition-duration: 0.3s; /*for hover function*/
+    transition-duration: 0.3s;         /*for hover function*/
+    background-color:skyblue;
+    color: white;
+    border-width: 1px;
+    border-color: gray;
+}
+
+#sidebarCollapseWrapper
+{
+    padding-right: 0%;
+    marging-right: 0%;
+}
+
+.sideBarButton
+{
+    font-size:100%;
+    text-align: center;
+    width: 100%;
+}
+
+.btn:hover
+{
+    background-color: lightblue; /* Green */
+    color: white;
+}
+
+.announcements
+{
+    background-color: black;
+}
+/* add color to values of interest */
+.redText
+{
+    color:red
+}
+
+.greenText
+{
+    color:green
+}
+
+.blackText
+{
+    color:black
+}
