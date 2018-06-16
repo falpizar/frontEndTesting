@@ -82,7 +82,9 @@
             <div class="tab-content">
                 {% for horizontalBarItem in horizontalBarItemsList %}
                 <div id="{{horizontalBarItem.getHref}}" class="tab-pane fade {{horizontalBarItem.getTextSelectedByDefault}}">
+                    {% autoescape off %}
                     <p>{{horizontalBarItem.getText}}</p>
+                    {% endautoescape %}
                 </div>
                 {% endfor %}                
             </div>

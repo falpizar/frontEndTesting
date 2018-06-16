@@ -34,7 +34,23 @@ class HorizontalBarItem_Budget(HorizontalBarItem):
     def getName(self):
         return "Budget"
     def getText(self):
-        userBudgetDetails = "Budget details:"
+        userBudgetDetails = """
+        <table id=\"userBudgetTable\" class=\"table table-bordered table-responsive-md table-striped text-center\">
+                <tr>
+                    <th class="text-center">Spending category</th>
+                    <th class="text-center">Budget</th>
+                    <th class="text-center">Actual</th>
+                    <th class="text-center">Available</th>
+                </tr>
+                <tr>
+                    <th>123</th>
+                    <th>456</th>
+                    <th>789</th>
+                </tr>
+        </table>    
+        
+        """
+        userBudgetDetails 
         return userBudgetDetails
     def getTextSelectedByDefault(self):
         return "in " + self.getSelectedByDefault()
