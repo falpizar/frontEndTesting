@@ -1,6 +1,7 @@
 from django.db import models
 import datetime
 from .DataModels import Request_Spending, Request_BudgetRegularSpending, SpendingDataColumn,SpendingDataRow
+from .Helpers import getClassColorForValue, getFormatColumn, getPlusButton
 
 class HorizontalBarItem(models.Model):
     def getHref(self):
@@ -43,9 +44,9 @@ class BudgetDataTable():
     def getTitle(self):
         return ""
     def getColumnNames(self):
-        return columnNames
+        return self.columnNames
     def getRows(self):
-        allRows = [""]
+        return self.rows
 
 class HorizontalBarItem_Budget(HorizontalBarItem):
     def getHref(self):
@@ -53,7 +54,22 @@ class HorizontalBarItem_Budget(HorizontalBarItem):
     def getName(self):
         return "Budget"
     def getText(self):
-        return self.getMonthSelector() + self.getRegularSpendingData() + self.getOcasionalSpendingData() + self.getSavingsData()
+        return self.getTopBar() + self.getRegularSpendingTable() + self.getOcasionalSpendingTable() + self.getSavingsTable()
+    def getTopBar(self):
+        # this bar contains:
+        # 1- the month selector
+        # 2- button to create a new spending category (i.e. regular spending, savings, etc)
+        # 3- button to create a new spending entry (i.e. )
+        topBarData = "<div class=\"row\">"
+        topBarData += getFormatColumn(self.getMonthSelector(), 1, self.js_getMonthSelectorId())
+        topBarData += getFormatColumn(getPlusButton(self.js_getNewCategoryButtonId()), 1, "") #button directly referenced
+        topBarData += "</div>"
+        return topBarData
+    # named "js_ indicates that this value will be referenced from some js script"
+    def js_getMonthSelectorId(self):
+        return "monthSelectorDivId"
+    def js_getNewCategoryButtonId(self):
+        return "js_newCategoryButton"
     def getMonthSelector(self):
         monthName = self.getMonthName()
         return monthName
@@ -64,25 +80,33 @@ class HorizontalBarItem_Budget(HorizontalBarItem):
     def getMonthName(self):
         mydate = datetime.datetime.now()
         return mydate.strftime("%B")
-    def getOcasionalSpendingDataId(self):
+    def js_getOcasionalSpendingDataId(self):
         return "userBudgetOcasionalSpendingTable"
-    def getOcasionalSpendingData(self):
-        return "<h2>Ocasional Spending</h2>" + self.getDataTable(self.getOcasionalSpendingDataId(),1)
-    def getRegularSpendingDataId(self):
+    def getOcasionalSpendingTable(self):
+        return "<h2>Ocasional Spending</h2>" + self.getDataTable(self.js_getOcasionalSpendingDataId(),1)
+    def js_getRegularSpendingDataId(self):
         return "userBudgetRegularSpendingTable"
-    def getRegularSpendingData(self):
-        return "<h2>Regular Spending</h2>" + self.getDataTable(self.getRegularSpendingDataId(),2)
-    def getSavingsDataId(self):
+    def getRegularSpendingTable(self):
+        return "<h2>Regular Spending</h2>" + self.getDataTable(self.js_getRegularSpendingDataId(),2)
+    def js_getSavingsDataId(self):
         return "userBudgetSavingsTable"
-    def getSavingsData(self):
-        return "<h2>Savings for future</h2>" + self.getDataTable(self.getSavingsDataId(),3)
-
+    def getSavingsTable(self):
+        return "<h2>Savings for future</h2>" + self.getDataTable(self.js_getSavingsDataId(),3)
     def getDataTable(self, tableId, tableDataId):
         tableData = self.getBudgetBaseTableHeader(tableId)
         for eachRow in Request_BudgetRegularSpending().getRows(tableDataId):
             tableData += "<tr>"
-            for eachIndex in eachRow.getAllData():
-                tableData += "<th>{}</th>".format(eachIndex)
+            # keep track of button ids to register the appropiate js event
+            # we'll need to display a form to support manual addition of spending events
+            plusButtonId = "js_" + eachRow.name + "plusButtonId"
+            plusButtonId.replace(" ","")
+            tableData += "<th>{} {}</th>".format(eachRow.name, getPlusButton(plusButtonId))
+            tableData += "<th>{}</th>".format(eachRow.assigned)
+            tableData += "<th>{}</th>".format(eachRow.budgetActual)
+
+            availableValueColor = getClassColorForValue(eachRow.available, 0, 0) # good or bad
+            tableData += "<th class=\"{}\">{}</th>".format(availableValueColor,eachRow.available)
+            
             tableData += "</tr>"
         tableData += "</table>"
         return tableData

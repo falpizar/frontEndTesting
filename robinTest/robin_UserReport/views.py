@@ -9,7 +9,7 @@ def userMain(request):
     #number_of_banks = SupportedBank.objects.all().count()
     #number_of_registered_users = ApplicationUser.objects.all().count()
 
-    currentUserId = "mockUserId239487" # to be replaced with the user session id
+    #currentUserId = "mockUserId239487" # to be replaced with the user session id
     
     mainPageTitle = "My Financials"
     sideBarItemsList = [
