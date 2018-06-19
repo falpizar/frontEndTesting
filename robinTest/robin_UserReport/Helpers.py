@@ -9,4 +9,4 @@ def getFormatColumn(inputValue, columnSize, divId):
     #based on Bootstrap classes
     return "<div id=\"{}\" class=\"col-sm-{}\">{}</div>".format(divId, columnSize, inputValue)
 def getPlusButton(buttonId):
-    return "<div id=\"{}\" class=\"glyphicon glyphicon-plus-sign\"/>".format(buttonId)
+    return "<plusButton id=\"{}\" class=\"glyphicon glyphicon-plus-sign\"/>".format(buttonId)

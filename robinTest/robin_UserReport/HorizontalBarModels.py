@@ -98,7 +98,7 @@ class HorizontalBarItem_Budget(HorizontalBarItem):
             tableData += "<tr>"
             # keep track of button ids to register the appropiate js event
             # we'll need to display a form to support manual addition of spending events
-            plusButtonId = "js_" + eachRow.name + "plusButtonId"
+            plusButtonId = "js_plusButtonId_{}_{}".format(eachRow.name,tableDataId)
             plusButtonId.replace(" ","")
             tableData += "<th>{} {}</th>".format(eachRow.name, getPlusButton(plusButtonId))
             tableData += "<th>{}</th>".format(eachRow.assigned)
