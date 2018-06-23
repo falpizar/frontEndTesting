@@ -53,10 +53,19 @@ html, body
     border-color: gray;
 }
 
+.stdPlusSign
+{
+    -webkit-transition-duration: 0.3s; /*for hover function*/
+    transition-duration: 0.3s;         /*for hover function*/
+    color:skyblue;
+    border-width: 1px;
+    border-color: gray;
+    float: right;
+}
+
 #sidebarCollapseWrapper
 {
     padding-right: 0%;
-    marging-right: 0%;
 }
 
 .sideBarButton
@@ -68,8 +77,13 @@ html, body
 
 .btn:hover
 {
-    background-color: lightblue; /* Green */
+    background-color: lightblue;
     color: white;
+}
+
+.stdPlusSign:hover
+{
+    color: lightblue;
 }
 
 .announcements

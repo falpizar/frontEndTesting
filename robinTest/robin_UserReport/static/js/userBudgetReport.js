@@ -15,26 +15,35 @@ function toggleClass(element, classToToggle)
             element.className = classes.join(" ");
     } 
 }
+*/
+
 function hideElement(element)
 {
-    //toggleClass(element, "active");
-    element.toggleClass('active');
+    element.style.visibility = "hidden";
 }
-*/
+
+function showElement(element)
+{
+    element.style.visibility = "visible";
+}
+
+function showNewElementPop(element)
+{
+
+}
 
 function hideAllPlusSigns()
 {
     allPlusSigns = document.getElementsByTagName("plusButton");
     for (i = 0; i < allPlusSigns.length; i++)
     {
-        allPlusSigns[i].toggleClass('active');
+        allPlusSigns[i].addEventListener("onclick", showNewElementPop);
     }
-      
 }
 
 $(document).ready(function() {
-    alert("Hello world from js script!");
-    hideAllPlusSigns();
+    //alert("Hello world from js script!");
+    //hideAllPlusSigns();
 });
 
 
