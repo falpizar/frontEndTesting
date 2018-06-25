@@ -105,3 +105,20 @@ html, body
 {
     color:black
 }
+
+#newDataInputModal
+{
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    position: absolute;
+    overflow: auto;
+    padding-top: 5em;
+}
+
+.modal-content
+{
+    margin: auto;
+    padding: 1em;
+    border: 1px solid #888;
+    width: 50%;
+    line-height: 1em;
+}

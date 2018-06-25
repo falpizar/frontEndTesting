@@ -90,9 +90,21 @@
                     <p>{{horizontalBarItem.getText}}</p>
                     {% endautoescape %}
                 </div>
-                {% endfor %}                
+                {% endfor %}
             </div>
         </div>
+
+        <div id="newDataInputModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h3>Add new entry to:</h3><h4 id="newSpendingTargetCategory"></h4><br><br>
+              Description: <input   type="text" id="newDataInputName"   value=""/><br><br>
+              Value: <input         type="text" id="newDataInputValue"  value=""/><br><br>
+              Backup document image: <input type="file" id="newDataInputFileName"/><br><br>
+              <button class="btn btn-success" id="newDataInputSubmit">Submit</button>
+            </div>
+        </div>
+
     </div>
 </div>
 {% endblock %}
